@@ -26,3 +26,35 @@ End for
 
 SHOW ON DISK($folderPath)
 ```
+
+###Source code
+
+SVG filters are used internally.
+
+```
+C_PICTURE($1;$0)
+
+  // Original image
+$normal:=$1
+
+$svg:=SVG_New 
+$g:=SVG_New_group ($svg)
+$image:=SVG_New_embedded_image ($g;$normal)
+
+  //Click: add more bright
+SVG_SET_BRIGHTNESS ($g;1.2)
+$click:=SVG_Export_to_picture ($svg)
+
+  //Hover: add more bright to previous image
+SVG_SET_BRIGHTNESS ($g;1.35)
+$hover:=SVG_Export_to_picture ($svg)
+
+  //Disabled: reduce brightness and set grayscale
+SVG_SET_BRIGHTNESS ($g;0.7)
+$disabled:=SVG_Export_to_picture ($svg)
+TRANSFORM PICTURE($disabled;Fade to grey scale)
+
+SVG_CLEAR ($svg)
+
+$0:=$normal/$click/$hover/$disabled
+```
