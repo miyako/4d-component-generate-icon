@@ -5,7 +5,7 @@ Generate 4 state icons using SVG filters
 $image:=Four_state_icon ($image)
 ```
 
-###Example
+### Example
 
 ```
 $folderPath:=Get 4D folder(Current resources folder)+"src"+Folder separator
@@ -27,7 +27,7 @@ End for
 SHOW ON DISK($folderPath)
 ```
 
-###Source code
+### Source code
 
 SVG filters are used internally.
 
